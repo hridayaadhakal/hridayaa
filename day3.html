@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rose Day</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Pacifico', cursive;
+            text-align: center;
+            background: linear-gradient(#ffe0f0, #ffd0ea);
+            overflow: hidden;
+        }
+
+        /* paper unfold */
+        .letter {
+            background: white;
+            max-width: 760px;
+            margin: 60px auto;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
+            transform-origin: top;
+            animation: unfold 0.9s ease forwards;
+            transform: rotateX(90deg);
+        }
+
+        @keyframes unfold {
+            to {
+                transform: rotateX(0);
+            }
+        }
+
+        h1 {
+            font-family: Pacifico, cursive;
+            font-size: 44px;
+        }
+
+        /* typewriter text */
+        #typedText {
+            font-size: 25px;
+            line-height: 1.7;
+            min-height: 140px;
+        }
+
+        /* cursor */
+        .cursor {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* buttons */
+        button {
+            font-family: Pacifico;
+            font-size: 20px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            background: hotpink;
+            color: white;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:hover {
+            transform: scale(1.07);
+        }
+
+        /* floating light particles */
+        .light {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            opacity: .7;
+            animation: floatUp linear forwards;
+        }
+
+        @keyframes floatUp {
+            to {
+                transform: translateY(-110vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="letter">
+
+        <h1>🍫 Chocolate Day</h1>
+
+        <div id="typedText"></div><span class="cursor">|</span>
+
+        <br><br>
+
+        <button onclick="location.href='week.html'">Back 💌</button>
+        <button onclick="goNext()">Next ➜</button>
+
+    </div>
+
+    <!-- zoom modal -->
+    <div class="modal" id="modal" onclick="modal.style.display='none'">
+        <img id="modalImg">
+    </div>
+
+    <script>
+
+        /* ✍️ TYPEWRITER MESSAGE — EDIT PER DAY */
+        const text = `
+Chocolate is sweet but you are sweeter. Chocolate melts but my love won't.
+Chocolate finishes but my feelings don't. So today I send you unlimited virtual chocolate eat much as you can.🍫💗
+`;
+
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                typedText.innerHTML += text[i];
+                i++;
+                setTimeout(type, 35);
+            }
+        }
+        type();
+
+        /* ➜ next page — change per day */
+        function goNext() {
+            location.href = "day4.html";
+        }
+
+        /* ✨ floating lights */
+        setInterval(() => {
+            const l = document.createElement("div");
+            l.className = "light";
+            l.style.left = Math.random() * 100 + "vw";
+            l.style.bottom = "-10px";
+            l.style.animationDuration = 4 + Math.random() * 4 + "s";
+            document.body.appendChild(l);
+            setTimeout(() => l.remove(), 8000);
+        }, 250);
+
+    </script>
+
+</body>
+
+</html>
